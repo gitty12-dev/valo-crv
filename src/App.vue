@@ -1,18 +1,24 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <!-- <HelloWorld msg="You did it!" /> -->
+      <h1>Hello World!</h1>
+      <button @click="$router.go(-1)">&lt;</button>
+      <button @click="$router.go(1)">&gt;</button>
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <!-- <RouterLink to="/">Home</RouterLink> -->
+        <RouterLink :to="{ name: 'home' }">Home</RouterLink>
+        <RouterLink :to="{ name: 'about', query: { name: 'John' } }">About</RouterLink>
+        <RouterLink to="/users">Users</RouterLink>
+        <!-- <RouterLink to="/users/1">User1</RouterLink> -->
+        <RouterLink :to="{ name:'user', params: { userId: 1 } }">User1</RouterLink>
+        <RouterLink to="/users/2">User2</RouterLink>
       </nav>
     </div>
   </header>
@@ -61,10 +67,6 @@ nav a:first-of-type {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   header .wrapper {
